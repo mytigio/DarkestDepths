@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="[CP] DarkestDepthsAssets\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="[CP] DarkestDepthsAssets\assets\Jakan\mytigio.DwarkestDepthsAssets_Jakan_Portrait.png" />
+    <None Remove="[CP] DarkestDepthsAssets\assets\Jakan\mytigio.DwarkestDepthsAssets_Jakan_Sprite.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="[CP] DarkestDepthsAssets\assets\BaseCamp\.Craftables.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\BaseCamp\.paths.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\BaseCamp\BaseCamp.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\BaseCamp\Craftables.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\BaseCamp\dwarf_basecamp_TileSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\BaseCamp\Mines\.mine_dark_dangerous.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\BaseCamp\Mines\.mine_lava.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\brightshroom_tree.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\dialogtemplate.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\glowshroom_tree.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\Jakan\Dialogue.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\Jakan\mytigio.DwarkestDepthsAssets_Jakan_Portrait.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\Jakan\mytigio.DwarkestDepthsAssets_Jakan_Sprite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\mysticshroom_tree.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\Niko\Dialogue.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\voidshroom_spore.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\assets\voidshroom_tree.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\content.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\i18n\default.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="[CP] DarkestDepthsAssets\manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+	<Target Name="DeployPack" AfterTargets="Build">
+		<Message Text="Running DeployPack target..." />
+		<ItemGroup>
+			<_FilesToCopy Exclude="$(ProjectDir)pack/**/*.aseprite" Include="$(ProjectDir)pack/**/*" />
+		</ItemGroup>
+
+		<Copy SourceFiles="@(_FilesToCopy)" DestinationFiles="@(_FilesToCopy->'$(_PackOutputLocation)%(RecursiveDir)%(Filename)%(Extension)')" />
+		<!-- Use ZipDirectory after build. -->
+		<ZipDirectory DestinationFile="$(ModZipPath)/$(AssemblyName) $(Version).zip" SourceDirectory="$(GameModsPath)" Overwrite="True" />
+	</Target>
+
+
+</Project>

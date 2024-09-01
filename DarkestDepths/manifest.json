@@ -1,0 +1,15 @@
+{
+  "Name": "Darkest Depths",
+  "Author": "mytigio",
+  "Version": "1.0.0",
+  "Description": "Explore the labyrinth of the caverns below the mines, down in the darkest depths where the Smoluanu once lived.",
+  "UniqueID": "mytigio.DarkestDepths",
+  "EntryDll": "DarkestDepths.dll",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": [],
+  "Dependencies": [
+    {
+      "UniqueID": "mytigio.DarkestDepthsAssets"
+    }
+  ]
+}

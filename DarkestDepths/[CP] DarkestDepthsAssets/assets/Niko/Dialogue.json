@@ -1,0 +1,17 @@
+{
+  "Changes": [
+    {
+      "Action": "EditData",
+      "Target": "Characters/Dialogue/{{ModId}}_Niko",
+      "Entries": {
+        "Mon": "{{i18n: NPC.Niko.Dialogue.Mon}}",
+        "Tue": "{{i18n: NPC.Niko.Dialogue.Tue}}",
+        "Wed": "{{i18n: NPC.Niko.Dialogue.Wed}}",
+        "Thu": "{{i18n: NPC.Niko.Dialogue.Thu}}",
+        "Fri": "{{i18n: NPC.Niko.Dialogue.Fri}}",
+        "Sat": "{{i18n: NPC.Niko.Dialogue.Sat}}",
+        "Sun": "{{i18n: NPC.Niko.Dialogue.Sun}}"
+      }
+    }
+  ]
+}

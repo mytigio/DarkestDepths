@@ -1,0 +1,12 @@
+{
+  "Name": "[CP] Darkest Depths Assets",
+  "Author": "mytigio",
+  "Version": "1.0.0",
+  "Description": "Assets to support the Darkest Depths mod.",
+  "UniqueID": "mytigio.DarkestDepthsAssets",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": [],
+  "ContentPackFor": {
+    "UniqueID": "Pathoschild.ContentPatcher"
+  }
+}
