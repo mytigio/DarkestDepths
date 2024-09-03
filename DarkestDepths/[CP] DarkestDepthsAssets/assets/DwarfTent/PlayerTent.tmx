@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="6" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="3">
+ <properties>
+  <property name="AllowWakeUpWithoutBed" value="T"/>
+  <property name="DayTiles" value="Back 2 2 1090 Back 3 2 1091 Buildings 2 0 1026 Buildings 3 0 1027 Back 2 5 1186"/>
+  <property name="NightTiles" value="Back 2 2 1122 Back 3 2 1184 Buildings 2 0 1188 Buildings 3 0 1189 Back 2 5 1154"/>
+ </properties>
+ <tileset firstgid="1" name="p" tilewidth="16" tileheight="16" tilecount="64" columns="4">
+  <image source=".paths.png" width="64" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="untitled tile sheet" tilewidth="16" tileheight="16" tilecount="2176" columns="32">
+  <image source=".townInterior.png" width="512" height="1088"/>
+ </tileset>
+ <layer id="1" name="Back" width="6" height="6">
+  <data encoding="csv">
+65,0,0,0,0,65,
+65,0,0,0,0,65,
+65,0,1155,1156,0,65,
+65,1186,1219,1219,1189,65,
+65,1218,1219,1220,1221,1219,
+65,65,1251,65,65,65
+</data>
+ </layer>
+ <layer id="2" name="Buildings" width="6" height="6">
+  <data encoding="csv">
+65,1090,1091,1092,1093,65,
+65,1122,1123,1124,1125,65,
+65,1154,0,0,1157,65,
+65,0,0,0,0,65,
+65,0,0,0,0,65,
+65,65,0,65,65,65
+</data>
+ </layer>
+ <layer id="3" name="Front" width="6" height="6">
+  <data encoding="csv">
+65,0,0,0,0,65,
+1121,0,0,0,0,1126,
+1185,0,0,0,0,1190,
+1185,0,0,0,0,1190,
+1217,1153,0,1158,1188,1222,
+0,1250,0,1252,0,0
+</data>
+ </layer>
+ <layer id="4" name="Paths" width="6" height="6">
+  <data encoding="csv">
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="5" name="Back">
+  <object id="1" name="TileData" x="64" y="48" width="16" height="32">
+   <properties>
+    <property name="Bed" value="T"/>
+    <property name="TouchAction" value="Sleep"/>
+   </properties>
+  </object>
+  <object id="2" name="TileData" x="32" y="80" width="16" height="16">
+   <properties>
+    <property name="TouchAction" value="Warp mytigio.DarkestDepthsAssets.Location.BaseCamp 19 53"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Buildings"/>
+ <objectgroup id="7" name="Front"/>
+ <objectgroup id="8" name="Paths"/>
+</map>

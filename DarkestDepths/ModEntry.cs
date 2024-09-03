@@ -88,6 +88,24 @@ namespace DarkestDepths
             {
                 baseCamp.locationContextId = LabyrinthManager.CONTEXT_NAME;
             }
+
+            var playerTent = Game1.getLocationFromName(LabyrinthManager.PLAYER_TENT_NAME);
+            if (playerTent != null)
+            {
+                playerTent.locationContextId = LabyrinthManager.CONTEXT_NAME;
+            }
+
+            var nikoTent = Game1.getLocationFromName(LabyrinthManager.NIKO_TENT_NAME);
+            if (nikoTent != null)
+            {
+                nikoTent.locationContextId = LabyrinthManager.CONTEXT_NAME;
+            }
+
+            var jakanTent = Game1.getLocationFromName(LabyrinthManager.JAKAN_TENT_NAME);
+            if (jakanTent != null)
+            {
+                jakanTent.locationContextId = LabyrinthManager.CONTEXT_NAME;
+            }
         }
 
         private void loadLocationContext(LocationContextData locationContextData)

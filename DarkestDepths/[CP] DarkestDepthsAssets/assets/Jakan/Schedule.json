@@ -1,12 +1,34 @@
 {
   "Changes": [
     {
+      "LogName": "Load Blank Jakan Schedule",
+      "Action": "Load",
+      "Target": "Characters/schedules/{{ModId}}_Jakan",
+      "FromFile": "assets/empty.json"
+    },
+    {
+      "LogName": "Load Blank Jakan Schedule Strings",
+      "Action": "Load",
+      "Target": "Strings/schedules/{{ModId}}_Jakan",
+      "FromFile": "assets/empty.json"
+    },
+    {
+      "LogName": "Default Jakan Schedule Strings",
+      "Action": "EditData",
+      "Target": "Strings/schedules/{{ModId}}_Jakan",
+      "Entries": {
+        "pleaseShop": "{{i18n: NPC.Jakan.Dialogue.PleaseShop}}",
+        "dwarfKing": "{{i18n: NPC.Jakan.Dialogue.DwarfKing}}",
+        "fishing": "{{i18n: NPC.Jakan.Dialogue.Fishing}}"
+      }
+    },
+    {
       "LogName": "Default Jakan Schedules",
       "Action": "EditData",
       "Target": "Characters/schedules/{{ModId}}_Jakan",
       "Entries": {
-        "spring": "000 mytigio.DarkestDepthsAssets.Location.BaseCamp 27 6 0/1100 mytigio.DarkestDepthsAssets.Location.BaseCamp 5 44 2/1500 mytigio.DarkestDepthsAssets.Location.BaseCamp 19 38 2"
+        "spring": "0610 mytigio.DarkestDepthsAssets.Location.BaseCamp 27 6 0 \"Strings\\schedules\\{{ModId}}_Jakan:dwarfKing\"/1100 mytigio.DarkestDepthsAssets.Location.BaseCamp 5 44 2 \"Strings\\schedules\\{{ModId}}_Jakan:fishing\"/1500 mytigio.DarkestDepthsAssets.Location.BaseCamp 19 38 2 \"Strings\\schedules\\{{ModId}}_Jakan:pleaseShop\""
       }
-    },
+    }
   ]
 }

@@ -25,6 +25,11 @@ namespace DarkestDepths.Labyrinth
     {
         public const string CONTEXT_NAME = "mytigio.DarkestDepths_Context_Labyrinth";
         public const string BASE_CAMP_NAME = "mytigio.DarkestDepthsAssets.Location.BaseCamp";
+        public const string PLAYER_TENT_NAME = "mytigio.DarkestDepthsAssets_Location.PlayerTent";
+        public const string NIKO_TENT_NAME = "mytigio.DarkestDepthsAssets_Location.NikoTent";
+        public const string JAKAN_TENT_NAME = "mytigio.DarkestDepthsAssets_Location.JakanTent";
+
+
         public const string SEED_FIELD_NAME = "Base_Seed";
         public const string DAILY_SEED_NAME = "Daily_Seed";
 
@@ -125,9 +130,14 @@ namespace DarkestDepths.Labyrinth
             //passout data for the labyrinth context.
             labyrinthContext.MaxPassOutCost = 0;
             ReviveLocation baseCamp = new ReviveLocation();
-            baseCamp.Id = id_base + "DarkestDepthsAssets.Location.BaseCamp";
+            baseCamp.Id = LabyrinthManager.BASE_CAMP_NAME;
             baseCamp.Location = LabyrinthManager.BASE_CAMP_NAME;
-            baseCamp.Position = new Point(32, 39);
+            baseCamp.Position = new Point(35, 40);
+
+            ReviveLocation playerTent = new ReviveLocation();
+            baseCamp.Id = LabyrinthManager.PLAYER_TENT_NAME;
+            baseCamp.Location = LabyrinthManager.PLAYER_TENT_NAME;
+            baseCamp.Position = new Point(4, 4);
 
             labyrinthContext.PassOutLocations = new List<ReviveLocation>() { baseCamp };
             labyrinthContext.ReviveLocations = new List<ReviveLocation>() { baseCamp };

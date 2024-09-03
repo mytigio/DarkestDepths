@@ -1,12 +1,16 @@
 {
   "Changes": [
     {
+      "LogName": "Load Blank Niko Dialog",
+      "Action": "Load",
+      "Target": "Characters/Dialogue/{{ModId}}_Niko",
+      "FromFile": "assets/empty.json"
+    },
+    {
       "Action": "EditData",
       "Target": "Characters/Dialogue/{{ModId}}_Niko",
       "Entries": {
-        "mytigio.DarkestDepthsAssets.Location.BaseCamp_10_54": "{{i18n: NPC.Niko.Dialogue.Waters}}",
-        "mytigio.DarkestDepthsAssets.Location.BaseCamp_30_37": "{{i18n: NPC.Niko.Dialogue.Working}}",
-        "mytigio.DarkestDepthsAssets.Location.BaseCamp_34_36": "{{i18n: NPC.Niko.Dialogue.PleaseShop}}",
+        "mytigio.DarkestDepthsAssets_Location.NikoTent": "This is sample test in the tent",
         "Mon": "{{i18n: NPC.Niko.Dialogue.Mon}}",
         "Tue": "{{i18n: NPC.Niko.Dialogue.Tue}}",
         "Wed": "{{i18n: NPC.Niko.Dialogue.Wed}}",

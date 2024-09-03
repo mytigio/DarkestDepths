@@ -13,24 +13,105 @@
       "FromFile": "assets/Jakan/mytigio.DwarkestDepthsAssets_Jakan_Portrait.png"
     },
     {
-      "LogName": "Load Blank Jakan Dialog",
-      "Action": "Load",
-      "Target": "Characters/Dialogue/{{ModId}}_Jakan",
-      "FromFile": "assets/empty.json"
-    },
-    {
       "Action": "Include",
       "FromFile": "assets/Jakan/Dialogue.json"
     },
     {
-      "LogName": "Load Blank Jakan Schedule",
-      "Action": "Load",
-      "Target": "Characters/schedules/{{ModId}}_Jakan",
-      "FromFile": "assets/empty.json"
-    },
-    {
       "Action": "Include",
       "FromFile": "assets/Jakan/Schedule.json"
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Characters",
+      "Entries": {
+        "{{ModId}}_Jakan": {
+          "DisplayName": "{{i18n:NPC.Jakan.Name}}",
+          "BirthSeason": "Winter",
+          "BirthDay": 5,
+          "HomeRegion": "Other",
+          "Language": "Dwarvish",
+          "Gender": "Undefined",
+          "Age": "Adult",
+          "Manner": "Neutral",
+          "SocialAnxiety": "Shy",
+          "Optimism": "Negative",
+          "IsDarkSkinned": false,
+          "CanBeRomanced": false,
+          "LoveInterest": "",
+          "Calendar": "HiddenAlways",
+          "SocialTab": "HiddenAlways",
+          "CanSocialize": false,
+          "CanReceiveGifts": false,
+          "CanGreetNearbyCharacters": true,
+          "CanCommentOnPurchasedShopItems": null,
+          "CanVisitIsland": false,
+          "IntroductionsQuest": false,
+          "ItemDeliveryQuests": null,
+          "PerfectionScore": false,
+          "EndSlideShow": "TrailingGroup",
+          "SpouseAdopts": false,
+          "SpouseWantsChildren": false,
+          "SpouseGiftJealousy": false,
+          "SpouseGiftJealousyFriendshipChange": -30,
+          "SpouseRoom": null,
+          "SpousePatio": null,
+          "SpouseFloors": [],
+          "SpouseWallpapers": [],
+          "DumpsterDiveFriendshipEffect": -25,
+          "DumpsterDiveEmote": null,
+          "FriendsAndFamily": {},
+          "FlowerDanceCanDance": false,
+          "WinterStarGifts": [],
+          "WinterStarParticipant": false,
+          "UnlockConditions": true,
+          "SpawnIfMissing": true,
+          "Home": [
+            {
+              "Id": "Default",
+              "Condition": null,
+              "Location": "{{ModId}}_Location.JakanTent",
+              "Tile": {
+                "X": 4,
+                "Y": 4
+              },
+              "Direction": "down"
+            }
+          ],
+          "TextureName": null,
+          "Appearance": [],
+          "MugShotSourceRect": null,
+          "Size": {
+            "X": 16,
+            "Y": 24
+          },
+          "Breather": false,
+          "BreathChestRect": null,
+          "BreathChestPosition": null,
+          "Shadow": null,
+          "EmoteOffset": {
+            "X": 0,
+            "Y": 0
+          },
+          "ShakePortraits": [],
+          "KissSpriteIndex": 28,
+          "KissSpriteFacingRight": true,
+          "HiddenProfileEmoteSound": null,
+          "HiddenProfileEmoteDuration": -1,
+          "HiddenProfileEmoteStartFrame": 16,
+          "HiddenProfileEmoteFrameCount": 4,
+          "HiddenProfileEmoteFrameDuration": 100.0,
+          "FormerCharacterNames": [],
+          "FestivalVanillaActorIndex": 31,
+          "CustomFields": null
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/NPCGiftTastes",
+      "Entries": {
+        "{{ModId}}_Jakan": ""
+      }
     }
   ]
 }
