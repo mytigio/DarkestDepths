@@ -4,14 +4,18 @@
       "Action": "EditData",
       "Target": "Characters/Dialogue/{{ModId}}_Jakan",
       "Entries": {
-        "mytigio.DarkestDepthsAssets_Location_BaseCamp_19_38": "{{i18n: NPC.Jakan.Dialogue.PleaseShop}}",
+        "mytigio.DarkestDepthsAssets.Location.BaseCamp_19_38": "{{i18n: NPC.Jakan.Dialogue.PleaseShop}}",
+        "mytigio.DarkestDepthsAssets.Location.BaseCamp_27_6": "{{i18n: NPC.Jakan.Dialogue.DwarfKing}}",
+        "mytigio.DarkestDepthsAssets.Location.BaseCamp_5_44": "{{i18n: NPC.Jakan.Dialogue.Fishing}}",
+        "mytigio.DarkestDepthsAssets.Location.BaseCamp": "{{i18n: NPC.Jakan.Dialogue.Fishing}}",
+        "BaseCamp": "{{i18n: NPC.Jakan.Dialogue.DwarfKing}}",
         "Mon": "{{i18n: NPC.Jakan.Dialogue.Mon}}",
-        "Tue": "{{i18n: NPC.Jakan.Dialogue.Tue}}",
+        //"Tue": "{{i18n: NPC.Jakan.Dialogue.Tue}}",
         "Wed": "{{i18n: NPC.Jakan.Dialogue.Wed}}",
-        "Thu": "{{i18n: NPC.Jakan.Dialogue.Thu}}",
-        "Fri": "{{i18n: NPC.Jakan.Dialogue.Fri}}",
-        "Sat": "{{i18n: NPC.Jakan.Dialogue.Sat}}",
-        "Sun": "{{i18n: NPC.Jakan.Dialogue.Sun}}"
+        //"Thu": "{{i18n: NPC.Jakan.Dialogue.Thu}}",
+        "Fri": "{{i18n: NPC.Jakan.Dialogue.Fri}}"
+        //"Sat": "{{i18n: NPC.Jakan.Dialogue.Sat}}",
+        //"Sun": "{{i18n: NPC.Jakan.Dialogue.Sun}}"
       }
     }
   ]

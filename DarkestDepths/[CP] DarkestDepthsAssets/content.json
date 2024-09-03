@@ -398,7 +398,7 @@
       "Action": "EditData",
       "Target": "Data/Locations",
       "Entries": {
-        "{{ModId}}_Location_BaseCamp": {
+        "mytigio.DarkestDepthsAssets.Location.BaseCamp": {
           "DisplayName": "{{i18n:Location.BaseCamp.DisplayName}}",
           "DefaultArrivalTile": {
             "X": "11",
@@ -409,13 +409,13 @@
             "AlwaysActive": true,
             "Type": "StardewValley.GameLocation"
           },
-          "ExcludeFromNpcPathfinding": true,
+          "ExcludeFromNpcPathfinding": false,
           "ArtifactSpots": [],
           "FishAreas": {
             "basecampFishing": {
-                "CrabPotfishTypes": [
-                  "freshwater"
-                ]
+              "CrabPotfishTypes": [
+                "freshwater"
+              ]
             }
           },
           "Fish": [
@@ -665,49 +665,12 @@
       }
     },
     {
-      "LogName": "Load Niko Sprite",
-      "Action": "Load",
-      "Target": "Characters/{{ModId}}_Niko",
-      "FromFile": "assets/Niko/mytigio.DwarkestDepthsAssets_Niko_Sprite.png"
-    },
-    {
-      "LogName": "Load Niko Portrait",
-      "Action": "Load",
-      "Target": "Portraits/{{ModId}}_Niko",
-      "FromFile": "assets/Niko/mytigio.DwarkestDepthsAssets_Niko_Portrait.png"
-    },
-    {
-      "LogName": "Load Blank Niko Dialog",
-      "Action": "Load",
-      "Target": "Characters/Dialogue/{{ModId}}_Niko",
-      "FromFile": "assets/dialogtemplate.json"
-    },
-    {
-      "LogName": "Load Blank Jakan Dialog",
-      "Action": "Load",
-      "Target": "Characters/Dialogue/{{ModId}}_Jakan",
-      "FromFile": "assets/dialogtemplate.json"
-    },
-    //Include dialogue for token.
-    {
       "Action": "Include",
-      "FromFile": "assets/Niko/Dialogue.json"
+      "FromFile": "assets/Jakan/Jakan.json"
     },
     {
       "Action": "Include",
-      "FromFile": "assets/Jakan/Dialogue.json"
-    },
-    {
-      "LogName": "Load Jakan Sprite",
-      "Action": "Load",
-      "Target": "Characters/{{ModId}}_Jakan",
-      "FromFile": "assets/Jakan/mytigio.DwarkestDepthsAssets_Jakan_Sprite.png"
-    },
-    {
-      "LogName": "Load Jakan Portrait",
-      "Action": "Load",
-      "Target": "Portraits/{{ModId}}_Jakan",
-      "FromFile": "assets/Jakan/mytigio.DwarkestDepthsAssets_Jakan_Portrait.png"
+      "FromFile": "assets/Niko/Niko.json"
     },
     {
       "Action": "EditData",
@@ -758,7 +721,7 @@
             {
               "Id": "Default",
               "Condition": null,
-              "Location": "{{ModId}}_Location_BaseCamp",
+              "Location": "{{ModId}}.Location.BaseCamp",
               "Tile": {
                 "X": 34,
                 "Y": 36
@@ -838,7 +801,7 @@
             {
               "Id": "Default",
               "Condition": null,
-              "Location": "{{ModId}}_Location_BaseCamp",
+              "Location": "{{ModId}}.Location.BaseCamp",
               "Tile": {
                 "X": 19,
                 "Y": 38
@@ -873,6 +836,36 @@
           "FestivalVanillaActorIndex": 31,
           "CustomFields": null
         }
+      }
+    },
+    {
+      "LogName": "Add Dwarf Shops to Map",
+      "Action": "EditMap",
+      "Target": "Mods/mytigio/DarkestDepthsAssets/Maps/BaseCamp",
+      "MapTiles": [
+        {
+          "Position": {
+            "X": 20,
+            "Y": 38
+          },
+          "Layer": "Buildings",
+          "SetProperties": {
+            "Action": "OpenShop mytigio.DarkestDepthsAssets_GeneralShop down 0600 2600 19 38 1 1"
+          }
+        },
+        {
+          "Position": {
+            "X": 34,
+            "Y": 37
+          },
+          "Layer": "Buildings",
+          "SetProperties": {
+            "Action": "OpenShop mytigio.DarkestDepthsAssets_MedicShop down 0600 2600 34 36 1 1"
+          }
+        }
+      ],
+      "When": {
+        "HasWalletItem": "DwarvishTranslationGuide"
       }
     },
     {
@@ -1029,6 +1022,9 @@
           "CustomFields": null,
           "ApplyProfitMargins": null
         }
+      },
+      "When": {
+        "HasWalletItem": "DwarvishTranslationGuide"
       }
     },
     {

@@ -1,0 +1,12 @@
+{
+  "Changes": [
+    {
+      "LogName": "Default Niko Schedules",
+      "Action": "EditData",
+      "Target": "Characters/schedules/{{ModId}}_Niko",
+      "Entries": {
+        "spring": "000 mytigio.DarkestDepthsAssets.Location.BaseCamp 10 54 3/700 mytigio.DarkestDepthsAssets.Location.BaseCamp 30 37 0/900 mytigio.DarkestDepthsAssets.Location.BaseCamp 34 36 2"
+      }
+    },
+  ]
+}

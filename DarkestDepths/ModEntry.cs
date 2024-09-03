@@ -59,7 +59,7 @@ namespace DarkestDepths
             {
                 Monitor.Log($"{Game1.player.Name} pressed {e.Button}.", LogLevel.Debug);
                 Monitor.Log($"Warp to dwarf basecamp");
-                Game1.warpFarmer("mytigio.DarkestDepthsAssets_Location_BaseCamp", 26, 34, 2);
+                Game1.warpFarmer(LabyrinthManager.BASE_CAMP_NAME, 26, 34, 2);
             }
         }
 

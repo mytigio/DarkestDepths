@@ -24,7 +24,7 @@ namespace DarkestDepths.Labyrinth
     internal class LabyrinthManager
     {
         public const string CONTEXT_NAME = "mytigio.DarkestDepths_Context_Labyrinth";
-        public const string BASE_CAMP_NAME = "mytigio.DarkestDepthsAssets_Location_BaseCamp";
+        public const string BASE_CAMP_NAME = "mytigio.DarkestDepthsAssets.Location.BaseCamp";
         public const string SEED_FIELD_NAME = "Base_Seed";
         public const string DAILY_SEED_NAME = "Daily_Seed";
 
@@ -125,7 +125,7 @@ namespace DarkestDepths.Labyrinth
             //passout data for the labyrinth context.
             labyrinthContext.MaxPassOutCost = 0;
             ReviveLocation baseCamp = new ReviveLocation();
-            baseCamp.Id = id_base + "DarkestDepthsAssets_Location_BaseCamp";
+            baseCamp.Id = id_base + "DarkestDepthsAssets.Location.BaseCamp";
             baseCamp.Location = LabyrinthManager.BASE_CAMP_NAME;
             baseCamp.Position = new Point(32, 39);
 
@@ -204,7 +204,7 @@ namespace DarkestDepths.Labyrinth
                 if (labyrinthLevel.Level == 0)
                 {
                     //current labyrinth level is 0.  Warp to the base camp.
-                    Game1.warpFarmer(LabyrinthManager.BASE_CAMP_NAME, 11, 26, 0);
+                    Game1.warpFarmer(LabyrinthManager.BASE_CAMP_NAME, 26, 56, 0);
                     MyMonitor.Log("Still have " + Game1.locations.Count() + " locations in the game.");
                 }
                 else
@@ -330,7 +330,7 @@ namespace DarkestDepths.Labyrinth
             LabyrinthManager.regenerateDailySeed();
             foreach (var farmer in Game1.getAllFarmers())
             {
-                if (farmer.currentLocation.Name == "mytigio.DarkestDepthsAssets_Location_BaseCamp")
+                if (farmer.currentLocation.Name == BASE_CAMP_NAME)
                 {
                     LabyrinthManager.InitializeBaseLevel();
                 }

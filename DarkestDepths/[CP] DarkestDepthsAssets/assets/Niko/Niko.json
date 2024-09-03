@@ -1,0 +1,36 @@
+{
+  "Changes": [
+    {
+      "LogName": "Load Niko Sprite",
+      "Action": "Load",
+      "Target": "Characters/{{ModId}}_Niko",
+      "FromFile": "assets/Niko/mytigio.DwarkestDepthsAssets_Niko_Sprite.png"
+    },
+    {
+      "LogName": "Load Niko Portrait",
+      "Action": "Load",
+      "Target": "Portraits/{{ModId}}_Niko",
+      "FromFile": "assets/Niko/mytigio.DwarkestDepthsAssets_Niko_Portrait.png"
+    },
+    {
+      "LogName": "Load Blank Niko Dialog",
+      "Action": "Load",
+      "Target": "Characters/Dialogue/{{ModId}}_Niko",
+      "FromFile": "assets/empty.json"
+    },
+    {
+      "Action": "Include",
+      "FromFile": "assets/Niko/Dialogue.json"
+    },
+    {
+      "LogName": "Load Blank Niko Schedule",
+      "Action": "Load",
+      "Target": "Characters/schedules/{{ModId}}_Niko",
+      "FromFile": "assets/empty.json"
+    },
+    {
+      "Action": "Include",
+      "FromFile": "assets/Niko/Schedule.json"
+    }
+  ]
+}
