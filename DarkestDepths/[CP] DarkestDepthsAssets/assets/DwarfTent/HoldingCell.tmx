@@ -4,7 +4,7 @@
   <property name="DayTiles" value="Back 2 2 1090 Back 3 2 1091 Buildings 2 0 1026 Buildings 3 0 1027 Back 2 5 1186"/>
   <property name="DefaultWarpLocation" value="2 4"/>
   <property name="NightTiles" value="Back 2 2 1122 Back 3 2 1184 Buildings 2 0 1188 Buildings 3 0 1189 Back 2 5 1154"/>
-  <property name="Warp" value="2 5 mytigio.DarkestDepthsAssets_Location.BaseCamp 32 39"/>
+  <property name="Warp" value="2 5 mytigio.DarkestDepthsAssets_Location.BaseCamp 41 5"/>
  </properties>
  <tileset firstgid="1" name="p" tilewidth="16" tileheight="16" tilecount="64" columns="4">
   <image source=".paths.png" width="64" height="256"/>

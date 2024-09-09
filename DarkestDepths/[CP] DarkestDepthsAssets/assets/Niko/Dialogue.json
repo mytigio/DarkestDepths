@@ -10,7 +10,7 @@
       "Action": "EditData",
       "Target": "Characters/Dialogue/{{ModId}}_Niko",
       "Entries": {
-        "mytigio.DarkestDepthsAssets_Location.NikoTent": "This is sample test in the tent",
+        "mytigio.DarkestDepthsAssets_Location.NikoTent": "{{i18n: NPC.Niko.Dialogue.LeaveTent}}",
         "Mon": "{{i18n: NPC.Niko.Dialogue.Mon}}",
         "Tue": "{{i18n: NPC.Niko.Dialogue.Tue}}",
         "Wed": "{{i18n: NPC.Niko.Dialogue.Wed}}",

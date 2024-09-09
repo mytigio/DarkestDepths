@@ -1,0 +1,28 @@
+{
+    "Changes": [
+        {
+            "LogName": "Add Shadow Golem Sprite",
+            "Action": "Load",
+            "Target": "Characters/Monsters/Shadow Golem",
+            "FromFile": "assets/MonsterSprites/ShadowGolem.png"
+        },
+        {
+            "LogName": "Add False Voidcap Sprite",
+            "Action": "Load",
+            "Target": "Characters/Monsters/False Voidcap",
+            "FromFile": "assets/MonsterSprites/FalseVoidCap.png"
+        },
+        {
+            "LogName": "Add False Glowcap Sprite",
+            "Action": "Load",
+            "Target": "Characters/Monsters/False Glowcap",
+            "FromFile": "assets/MonsterSprites/FalseGlowCap.png"
+        },
+        {
+            "LogName": "Add False Brightcap Sprite",
+            "Action": "Load",
+            "Target": "Characters/Monsters/False Brightcap",
+            "FromFile": "assets/MonsterSprites/FalseBrightCap.png"
+        }
+    ]
+}

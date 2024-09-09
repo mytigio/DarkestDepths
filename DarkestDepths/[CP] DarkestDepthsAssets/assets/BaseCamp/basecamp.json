@@ -1,0 +1,137 @@
+{
+  "Changes": [
+    {
+      "LogName": "Load Dwarven Base Camp Map",
+      "Action": "Load",
+      "Target": "Mods/mytigio/DarkestDepthsAssets/Maps/BaseCamp",
+      "FromFile": "assets/BaseCamp/BaseCamp.tmx"
+    },
+    {
+      "LogName": "Load Dwarven Base Camp Location",
+      "Action": "EditData",
+      "Target": "Data/Locations",
+      "Entries": {
+        "{{ModId}}_Location.BaseCamp": {
+          "DisplayName": "{{i18n:Location.BaseCamp.DisplayName}}",
+          "DefaultArrivalTile": {
+            "X": "11",
+            "Y": "4"
+          },
+          "CreateOnLoad": {
+            "MapPath": "Mods/mytigio/DarkestDepthsAssets/Maps/BaseCamp",
+            "AlwaysActive": true,
+            "Type": "StardewValley.GameLocation"
+          },
+          "ExcludeFromNpcPathfinding": false,
+          "ArtifactSpots": [],
+          "FishAreas": {
+            "basecampFishing": {
+              "CrabPotfishTypes": [
+                "freshwater"
+              ]
+            }
+          },
+          "Fish": [
+            {
+              "Chance": 0.80,
+              "FishAreaId": "basecampFishing",
+              "RandomItemId": [
+                "(O)800",
+                "(O)161",
+                "(O)162",
+                "(O)798",
+                "(O)799",
+                "(O)155"
+              ],
+              "Precedence": -150,
+              "MinFishingLevel": 8,
+              "MinDistanceFromShore": 3,
+              "IgnoreFishDataRequirements": true
+            },
+            {
+              "Chance": 0.30,
+              "FishAreaId": "basecampFishing",
+              "RandomItemId": [
+                "(O)800",
+                "(O)161",
+                "(O)162",
+                "(O)798",
+                "(O)799",
+                "(O)155"
+              ],
+              "Precedence": -100,
+              "MinFishingLevel": 5,
+              "MinDistanceFromShore": 3,
+              "IgnoreFishDataRequirements": true
+            },
+            {
+              "Chance": 0.50,
+              "FishAreaId": "basecampFishing",
+              "RandomItemId": [
+                "(O)156",
+                "(O)158",
+                "(O)269",
+                "(O)798",
+                "(O)799",
+                "(O)836",
+                "(O)CaveJelly",
+                "(O)148"
+              ],
+              "Precedence": -15,
+              "MinFishingLevel": 3,
+              "IgnoreFishDataRequirements": true
+            },
+            {
+              "Chance": 0.30,
+              "FishAreaId": "basecampFishing",
+              "RandomItemId": [
+                "(O)156",
+                "(O)158",
+                "(O)269",
+                "(O)798",
+                "(O)799",
+                "(O)836",
+                "(O)CaveJelly",
+                "(O)148"
+              ],
+              "Precedence": -10,
+              "IgnoreFishDataRequirements": true
+            },
+            {
+              "Chance": 1.0,
+              "FishAreaId": "basecampFishing",
+              "RandomItemId": [
+                "(O)157",
+                "(O)718",
+                "(O)719",
+                "(O)720",
+                "(O)721"
+              ],
+              "Precedence": 0,
+              "IgnoreFishDataRequirements": true
+            }
+          ],
+          "Forage": [],
+          "MinDailyWeeds": 0,
+          "MaxDailyWeeds": 0,
+          "FirstDayWeedMultiplier": 0,
+          "MinDailyForageSpawn": 0,
+          "MaxDailyForageSpawn": 0,
+          "ChanceForClay": 0,
+          "CustomFields": {
+            "AllowMagicMushroomTreeGrowth": "true"
+          }
+        }
+      }
+    },
+    {
+      "LogName": "Add strings to StringsFromMaps",
+      "Action": "EditData",
+      "Target": "Strings/StringsFromMaps",
+      "Entries": {
+        "Location.BaseCamp.DwarfAltar": "{{i18n: Location.BaseCamp.DwarfAltar}}",
+        "Location.BaseCamp.Hole": "{{i18n: Location.BaseCamp.Hole}}"
+      }
+    }
+  ]
+}

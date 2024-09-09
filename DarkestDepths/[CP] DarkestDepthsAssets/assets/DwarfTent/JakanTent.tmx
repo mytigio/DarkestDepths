@@ -2,7 +2,9 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="6" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="3">
  <properties>
   <property name="DayTiles" value="Back 2 2 1090 Back 3 2 1091 Buildings 2 0 1026 Buildings 3 0 1027 Back 2 5 1186"/>
+  <property name="DefaultWarpLocation" value="2 4"/>
   <property name="NightTiles" value="Back 2 2 1122 Back 3 2 1184 Buildings 2 0 1188 Buildings 3 0 1189 Back 2 5 1154"/>
+  <property name="Warp" value="2 5 mytigio.DarkestDepthsAssets_Location.BaseCamp 22 41"/>
  </properties>
  <tileset firstgid="1" name="p" tilewidth="16" tileheight="16" tilecount="64" columns="4">
   <image source=".paths.png" width="64" height="256"/>
@@ -50,13 +52,7 @@
 0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Back">
-  <object id="2" name="TileData" x="32" y="80" width="16" height="16">
-   <properties>
-    <property name="TouchAction" value="Warp mytigio.DarkestDepthsAssets.Location.BaseCamp 22 41"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup id="5" name="Back"/>
  <objectgroup id="6" name="Buildings"/>
  <objectgroup id="7" name="Front"/>
  <objectgroup id="8" name="Paths"/>

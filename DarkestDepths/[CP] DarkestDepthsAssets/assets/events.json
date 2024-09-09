@@ -1,0 +1,41 @@
+{
+    "Changes": [
+        {
+            "LogName": "Load Blank Events for Basecamp",
+            "Action": "Load",
+            "Target": "Data/Events/{{ModId}}_Location.BaseCamp",
+            "FromFile": "assets/empty.json"
+        },
+        {
+            "LogName": "Load Always Available Events.",
+            "Action": "EditData",
+            "Target": "Data/Events/{{ModId}}_Location.BaseCamp",
+            "Entries": {
+                "PlayerKilled": "Upper_Ambient/-100 -100/farmer 35 40 2 {{ModId}}_Niko 35 38 2/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.PlayerKilled.1}}\"/pause 2000/animate {{ModId}}_Niko false true 200 16 17 18 19/viewport 35 40 true/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.PlayerKilled.2}}\"/pause 1000/playSound wand/glow 240 65 65 false/shake {{ModId}}_Niko 2000/screenFlash 1/playSound wand/stopAnimation {{ModId}}_Niko 0/showFrame {{ModId}}_Niko 0/pause 1000/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.PlayerKilled.3}}\"/pause 500/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.PlayerKilled.4}}\"/emote farmer 28/end"
+            }
+        },
+        {
+            "LogName": "Load Pre-Translations Guide Events.",
+            "Action": "EditData",
+            "Target": "Data/Events/{{ModId}}_Location.BaseCamp",
+            "Entries": {
+                "{{ModID}}_FirstVisit_NoDwarvenTranslationGuide/!SawEvent {{ModID}}_FirstVisit_HasDwarvenTranslationGuide/Time 600 2600/": "Upper_Ambient/26 34/farmer 26 34 2 {{ModId}}_Niko 30 37 0 {{ModId}}_Jakan 26 45 0/skippable/faceDirection {{ModId}}_Niko 0 true/advancedMove {{ModId}}_Jakan false 0 -9/emote {{ModId}}_Jakan 16 true/emote {{ModId}}_Niko 16 true/advancedMove {{ModId}}_Niko false -2 0 0 -3 3 3000/faceDirection {{ModId}}_Niko left true/pause 1000/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.FirstVisit.1}}\"/pause 1000/speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Dialogue.Event.FirstVisit.1}}\"/pause 1500/emote farmer 8 true/emote {{ModId}}_Niko 8 true/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.FirstVisit.2}}\"/pause 2000/speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Dialogue.Event.FirstVisit.2}}\"/pause 1000/speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Dialogue.Event.FirstVisit.3}}\"/pause 1000/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.FirstVisit.3}}\"/pause 1000/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.FirstVisit.4}}\"/end"
+            },
+            "When": {
+                "HasWalletItem |contains=DwarvishTranslationGuide": "false"
+            }
+        },
+        {
+            "LogName": "Load Post-Translations Guide Events.",
+            "Action": "EditData",
+            "Target": "Data/Events/{{ModId}}_Location.BaseCamp",
+            "Entries": {
+                "{{ModID}}_FirstVisit_HasDwarvenTranslationGuide/!SawEvent {{ModID}}_FirstVisit_NoDwarvenTranslationGuide/Time 600 2600/": "Upper_Ambient/26 34/farmer 26 34 2 {{ModId}}_Niko 30 37 0 {{ModId}}_Jakan 26 45 0/skippable/advancedMove {{ModId}}_Jakan false 0 -9/pause 1000/emote {{ModId}}_Niko 16 true/move {{ModId}}_Niko -2 0 left false/move {{ModId}}_Niko 0 -3 up false/faceDirection {{ModId}}_Niko left/pause 1000/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.FirstVisit.1}}\"/quickQuestion #{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.1.1}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.1.2}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.1.3}}(break)emote farmer 32(break)emote farmer 16(break)emote farmer 8/pause 500/emote {{ModId}}_Niko 16 true/jump {{ModId}}_Niko/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.ReVisit_NowHasDwarvenTranslationGuide.2}}\"/speak {{ModId}}_Jakan \"{{i18n: NPC.Jakan.Dialogue.Event.FirstVisit.4}}\"/speak {{ModId}}_Niko \"{{i18n: NPC.Niko.Dialogue.Event.FirstVisit.5}}\"/quickQuestion #{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.2.1}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.2.2}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.2.3}}(break)speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Event.Firstvisit.Answer.2.1}}\"(break)speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Event.Firstvisit.Answer.2.2}}\"(break)speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Event.Firstvisit.Answer.2.3}}\"/pause 1000/quickQuestion #{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.3.1}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.3.2}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.3.3}}(break)speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Event.Firstvisit.Answer.3.1}}\"(break)speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Event.Firstvisit.Answer.3.2}}\"(break)speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Event.Firstvisit.Answer.3.3}}\"/pause 1000/speak {{ModId}}_Niko \"{{i18n: NPC.Niko.Dialogue.Event.FirstVisit.6}}\"/pause 1000/speak {{ModId}}_Jakan \"{{i18n: NPC.Jakan.Dialogue.Event.Firstvisit.5}}\"/end",
+                "{{ModID}}_ReVisit_NowHasDwarvenTranslationGuide/SawEvent {{ModID}}_FirstVisit_NoDwarvenTranslationGuide/Time 600 2600/": "Upper_Ambient/26 34/farmer 26 34 2 {{ModId}}_Niko 34 36 2 {{ModId}}_Jakan 20 39 0/skippable/faceDirection {{ModId}}_Niko 2 true/advancedMove {{ModId}}_Jakan false -1 0 0 -3 7 0 4 3000/faceDirection {{ModId}}_Jakan 0 true/advancedMove {{ModId}}_Niko false 0 -2 -6 0/pause 1000/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.ReVisit_NowHasDwarvenTranslationGuide.1}}\"/quickQuestion #{{i18n:Farmer.Dialogue.Event.ReVisit_NowHasDwarvenTranslationGuide.Answer.1.1}}#{{i18n:Farmer.Dialogue.Event.ReVisit_NowHasDwarvenTranslationGuide.Answer.1.2}}#{{i18n:Farmer.Dialogue.Event.ReVisit_NowHasDwarvenTranslationGuide.Answer.1.3}}(break)emote farmer 32(break)emote farmer 16(break)emote farmer 8/pause 500/emote {{ModId}}_Niko 16 true/jump {{ModId}}_Niko/speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Dialogue.Event.ReVisit_NowHasDwarvenTranslationGuide.2}}\"/speak {{ModId}}_Jakan \"{{i18n: NPC.Jakan.Dialogue.Event.FirstVisit.4}}\"/speak {{ModId}}_Niko \"{{i18n: NPC.Niko.Dialogue.Event.FirstVisit.5}}\"/quickQuestion #{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.2.1}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.2.2}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.2.3}}(break)speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Event.Firstvisit.Answer.2.1}}\"(break)speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Event.Firstvisit.Answer.2.2}}\"(break)speak {{ModId}}_Niko \"{{i18n:NPC.Niko.Event.Firstvisit.Answer.2.3}}\"/pause 1000/quickQuestion #{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.3.1}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.3.2}}#{{i18n:Farmer.Dialogue.Event.FirstVisit.Answer.3.3}}(break)speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Event.Firstvisit.Answer.3.1}}\"(break)speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Event.Firstvisit.Answer.3.2}}\"(break)speak {{ModId}}_Jakan \"{{i18n:NPC.Jakan.Event.Firstvisit.Answer.3.3}}\"/pause 1000/speak {{ModId}}_Niko \"{{i18n: NPC.Niko.Dialogue.Event.FirstVisit.6}}\"/pause 1000/speak {{ModId}}_Jakan \"{{i18n: NPC.Jakan.Dialogue.Event.Firstvisit.5}}\"/end"
+            },
+            "When": {
+                "HasWalletItem |contains=DwarvishTranslationGuide": "true"
+            }
+        }
+    ]
+}

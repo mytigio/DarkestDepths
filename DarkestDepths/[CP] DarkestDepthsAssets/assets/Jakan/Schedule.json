@@ -27,7 +27,10 @@
       "Action": "EditData",
       "Target": "Characters/schedules/{{ModId}}_Jakan",
       "Entries": {
-        "spring": "0610 mytigio.DarkestDepthsAssets.Location.BaseCamp 27 6 0 \"Strings\\schedules\\{{ModId}}_Jakan:dwarfKing\"/1100 mytigio.DarkestDepthsAssets.Location.BaseCamp 5 44 2 \"Strings\\schedules\\{{ModId}}_Jakan:fishing\"/1500 mytigio.DarkestDepthsAssets.Location.BaseCamp 19 38 2 \"Strings\\schedules\\{{ModId}}_Jakan:pleaseShop\""
+        "Tue": "700 mytigio.DarkestDepthsAssets_Location.HoldingCell 3 3 0/2000 mytigio.DarkestDepthsAssets_Location.BaseCamp 20 39 0/2130 mytigio.DarkestDepthsAssets_Location.JakanTent 4 4 2",
+        "Thu": "GOTO Tue",
+        "Sun": "630 mytigio.DarkestDepthsAssets_Location.BaseCamp 27 6 0 \"Strings\\schedules\\{{ModId}}_Jakan:dwarfKing\"/900 mytigio.DarkestDepthsAssets_Location.BaseCamp 5 44 2 \"Strings\\schedules\\{{ModId}}_Jakan:fishing\"/1100 mytigio.DarkestDepthsAssets_Location.BaseCamp 19 38 2 \"Strings\\schedules\\{{ModId}}_Jakan:pleaseShop\"/2100 mytigio.DarkestDepthsAssets_Location.JakanTent 4 4 2",
+        "spring": "800 mytigio.DarkestDepthsAssets_Location.BaseCamp 19 38 2 \"Strings\\schedules\\{{ModId}}_Jakan:pleaseShop\"/2100 mytigio.DarkestDepthsAssets_Location.JakanTent 4 4 2"
       }
     }
   ]

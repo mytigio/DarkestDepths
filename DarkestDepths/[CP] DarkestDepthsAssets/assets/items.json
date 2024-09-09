@@ -1,0 +1,214 @@
+{
+  "Changes": [
+    {
+      "LogName": "Add new items for Darkest Depths.",
+      "Action": "EditData",
+      "Target": "Data/Objects",
+      "Entries": {
+        "{{ModId}}_Voidcap": {
+          "Name": "Voidcap",
+          "DisplayName": "{{i18n:Objects.Voidshroom.Forage.Name}}",
+          "Description": "{{i18n:Objects.Voidshroom.Forage.Description}}",
+          "Type": "Basic",
+          "Price": 400,
+          "Category": "-81",
+          "Edibility": 50,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "edible_mushroom",
+            "forage_item",
+            "forage_item_mines",
+            "color_purple"
+          ],
+          "Texture": "Mods/DarkestDepths/VoidshroomTree",
+          "SpriteIndex": 87
+        },
+        "{{ModId}}_Spore_Voidshroom": {
+          "Name": "Voidshroom Spore",
+          "DisplayName": "{{i18n:Objects.Voidshroom.Spore.Name}}",
+          "Description": "{{i18n:Objects.Voidshroom.Spore.Description}}",
+          "Type": "Basic",
+          "Price": 200,
+          "Category": "-81",
+          "Edibility": -300,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "{{ModId}}_mushroom_spore",
+            "forage_item",
+            "forage_item_mines",
+            "color_purple"
+          ],
+          "Texture": "Mods/DarkestDepths/VoidshroomTree",
+          "SpriteIndex": 80
+        },
+        "{{ModId}}_Mycelium_Voidshroom": {
+          "Name": "Voidshroom Mycelium",
+          "DisplayName": "{{i18n:Objects.Voidshroom.Mycelium.Name}}",
+          "Description": "{{i18n:Objects.Voidshroom.Mycelium.Description}}",
+          "Type": "Basic",
+          "Price": 75,
+          "Category": "-81",
+          "Edibility": 20,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "{{ModId}}_mushroom_spore",
+            "edible_mushroom",
+            "forage_item",
+            "forage_item_mines",
+            "color_purple"
+          ],
+          "Texture": "Mods/DarkestDepths/VoidshroomTree",
+          "SpriteIndex": 89
+        },
+        "{{ModId}}_Glowcap": {
+          "Name": "Glowcap",
+          "DisplayName": "{{i18n:Objects.Glowshroom.Forage.Name}}",
+          "Description": "{{i18n:Objects.Glowshroom.Forage.Description}}",
+          "Type": "Basic",
+          "Price": 400,
+          "Category": "-81",
+          "Edibility": 60,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "edible_mushroom",
+            "forage_item",
+            "forage_item_mines",
+            "color_blue"
+          ],
+          "Texture": "Mods/DarkestDepths/GlowshroomTree",
+          "SpriteIndex": 87
+        },
+        "{{ModId}}_Spore_Glowshroom": {
+          "Name": "Glowshroom Spore",
+          "DisplayName": "{{i18n:Objects.Glowshroom.Spore.Name}}",
+          "Description": "{{i18n:Objects.Glowshroom.Spore.Description}}",
+          "Type": "Basic",
+          "Price": 250,
+          "Category": "-81",
+          "Edibility": -300,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "{{ModId}}_mushroom_spore",
+            "forage_item",
+            "forage_item_mines",
+            "color_blue"
+          ],
+          "Texture": "Mods/DarkestDepths/GlowshroomTree",
+          "SpriteIndex": 80
+        },
+        "{{ModId}}_Glowshroom_Sap": {
+          "Name": "Glowshroom Sap",
+          "DisplayName": "{{i18n:Objects.Glowshroom.Sap.Name}}",
+          "Description": "{{i18n:Objects.Glowshroom.Sap.Description}}",
+          "Type": "Basic",
+          "Category": -81,
+          "Price": 15,
+          "Edibility": -1,
+          "IsDrink": false,
+          "Buffs": null,
+          "GeodeDropsDefaultItems": false,
+          "GeodeDrops": null,
+          "ArtifactSpotChances": null,
+          "ExcludeFromFishingCollection": false,
+          "ExcludeFromShippingCollection": false,
+          "ExcludeFromRandomSale": false,
+          "ContextTags": [
+            "color_green"
+          ],
+          "CustomFields": null,
+          "Texture": "Mods/DarkestDepths/GlowshroomTree",
+          "SpriteIndex": 89
+        },
+        "{{ModId}}_Brightcap": {
+          "Name": "Brightcap",
+          "DisplayName": "{{i18n:Objects.Brightshroom.Forage.Name}}",
+          "Description": "{{i18n:Objects.Brightshroom.Forage.Description}}",
+          "Type": "Basic",
+          "Price": 400,
+          "Category": "-81",
+          "Edibility": 80,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "edible_mushroom",
+            "forage_item",
+            "forage_item_mines",
+            "color_light_cyan"
+          ],
+          "Texture": "Mods/DarkestDepths/BrightshroomTree",
+          "SpriteIndex": 87
+        },
+        "{{ModId}}_Spore_Brightshroom": {
+          "Name": "Brightshroom Spore",
+          "DisplayName": "{{i18n:Objects.Brightshroom.Spore.Name}}",
+          "Description": "{{i18n:Objects.Brightshroom.Spore.Description}}",
+          "Type": "Basic",
+          "Price": 300,
+          "Category": "-81",
+          "Edibility": -300,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "{{ModId}}_mushroom_spore",
+            "forage_item",
+            "forage_item_mines",
+            "color_light_cyan"
+          ],
+          "Texture": "Mods/DarkestDepths/BrightshroomTree",
+          "SpriteIndex": 80
+        },
+        "{{ModId}}_Gills_Brightshroom": {
+          "Name": "Brightshroom Gills",
+          "DisplayName": "{{i18n:Objects.Brightshroom.Gills.Name}}",
+          "Description": "{{i18n:Objects.Brightshroom.Gills.Description}}",
+          "Type": "Basic",
+          "Price": 300,
+          "Category": "-81",
+          "Edibility": 60,
+          "ContextTags": [
+            "{{ModId}}",
+            "{{ModId}}_magical",
+            "{{ModId}}_mushroom_spore",
+            "edible_mushroom",
+            "forage_item",
+            "forage_item_mines",
+            "color_light_cyan"
+          ],
+          "Texture": "Mods/DarkestDepths/BrightshroomTree",
+          "SpriteIndex": 89
+        }
+      }
+    },
+    {
+      "LogName": "Add new big craftables for Darkest Depths.",
+      "Action": "EditData",
+      "Target": "Data/BigCraftables",
+      "Entries": {
+        "{{ModId}}_Glowsap_Lamp": {
+          "Name": "Glowsap Stones",
+          "DisplayName": "{{i18n:BigCraftables.Glowshroom.Torch.Name}}",
+          "Description": "{{i18n:BigCraftables.Glowshroom.Torch.Description}}",
+          "Price": 0,
+          "Fragility": 0,
+          "CanBePlacedIndoors": true,
+          "CanBePlacedOutdoors": true,
+          "IsLamp": true,
+          "Texture": "Mods/DarkestDepths/GlowshroomTree",
+          "SpriteIndex": 43
+        }
+      }
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/CraftingRecipes",
+      "Entries": {
+        "Glowsap Stones": "390 5 {{ModId}}_Glowshroom_Sap 5/Home/{{ModId}}_Glowsap_Lamp/true/Mining 7/"
+      }
+    }
+  ]
+}

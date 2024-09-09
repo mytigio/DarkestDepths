@@ -10,16 +10,14 @@
       "Action": "EditData",
       "Target": "Characters/Dialogue/{{ModId}}_Jakan",
       "Entries": {
-        "mytigio.DarkestDepthsAssets_Location.JakanTent": "Tent Dialog",
-        "Mountain_31_23": "Mountain Dialog",
-        //"spring_27": "{{i18n: NPC.Jakan.Dialogue.PleaseShop}}",
+        "mytigio.DarkestDepthsAssets_Location.JakanTent": "{{i18n: NPC.Jakan.Dialogue.LeaveTent}}",
         "Mon": "{{i18n: NPC.Jakan.Dialogue.Mon}}",
-        //"Tue": "{{i18n: NPC.Jakan.Dialogue.Tue}}",
+        "Tue": "{{i18n: NPC.Jakan.Dialogue.Tue}}",
         "Wed": "{{i18n: NPC.Jakan.Dialogue.Wed}}",
-        //"Thu": "{{i18n: NPC.Jakan.Dialogue.Thu}}",
-        "Fri": "{{i18n: NPC.Jakan.Dialogue.Fri}}"
-        //"Sat": "{{i18n: NPC.Jakan.Dialogue.Sat}}",
-        //"Sun": "{{i18n: NPC.Jakan.Dialogue.Sun}}"
+        "Thu": "{{i18n: NPC.Jakan.Dialogue.Thu}}",
+        "Fri": "{{i18n: NPC.Jakan.Dialogue.Fri}}",
+        "Sat": "{{i18n: NPC.Jakan.Dialogue.Sat}}",
+        "Sun": "{{i18n: NPC.Jakan.Dialogue.Sun}}"
       }
     }
   ]

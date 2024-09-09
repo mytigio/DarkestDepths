@@ -1,0 +1,71 @@
+{
+    "Changes": [
+        {
+            "LogName": "Add Dwarven Expansion Improved Mushroom Box working effects.",
+            "Action": "EditData",
+            "Target": "Data/Machines",
+            "TargetField": [
+                "(BC)mytigio.dwarven_expansion_ImprovedMushroomBox",
+                "WorkingEffects"
+            ],
+            "Entries": {
+                "#-1": {
+                    "Condition": "ITEM_ID Input (O){{ModId}}_Voidcap",
+                    "Frames": [
+                        11
+                    ],
+                    "Interval": 100
+                },
+                "#-2": {
+                    "Condition": "ITEM_ID Input (O){{ModId}}_Glowcap",
+                    "Frames": [
+                        12
+                    ],
+                    "Interval": 100
+                },
+                "#-3": {
+                    "Condition": "ITEM_ID Input (O){{ModId}}_Brightcap",
+                    "Frames": [
+                        13
+                    ],
+                    "Interval": 100
+                }
+            },
+            "When": {
+                "HasMod": "mytigio.dwarven_expansion"
+            }
+        },
+        {
+            "LogName": "Add Dwarven Expansion Improved Mushroom Box ready time modifiers.",
+            "Action": "EditData",
+            "Target": "Data/Machines",
+            "TargetField": [
+                "(BC)mytigio.dwarven_expansion_ImprovedMushroomBox",
+                "ReadyTimeModifiers"
+            ],
+            "Entries": {
+                "{{ModId}}_Voidcap": {
+                    "Id": "{{ModId}}_Voidcap",
+                    "Modification": "Set",
+                    "Amount": 8640,
+                    "Condition": "ITEM_ID Input (O){{ModId}}_Voidcap"
+                },
+                "{{ModId}}_Glowcap": {
+                    "Id": "{{ModId}}_Glowcap",
+                    "Modification": "Set",
+                    "Amount": 8640,
+                    "Condition": "ITEM_ID Input (O){{ModId}}_Glowcap"
+                },
+                "{{ModId}}_Brightcap": {
+                    "Id": "{{ModId}}_Brightcap",
+                    "Modification": "Set",
+                    "Amount": 8640,
+                    "Condition": "ITEM_ID Input (O){{ModId}}_Brightcap"
+                }
+            },
+            "When": {
+                "HasMod": "mytigio.dwarven_expansion"
+            }
+        }
+    ]
+}

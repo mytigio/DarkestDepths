@@ -1478,15 +1478,15 @@ namespace DarkestDepths.Labyrinth
                     {
                         spawnTree(tile, "7");
                     }
-                    else if (random < 10)
+                    else if (random < 9)
                     {
                         spawnTree(tile, "mytigio.DarkestDepthsAssets_Tree_Voidshroom");
                     }
-                    else if (random < 14)
+                    else if (random < 13)
                     {
                         spawnTree(tile, "mytigio.DarkestDepthsAssets_Tree_Glowshroom");
                     }
-                    else if (random < 15)
+                    else if (random < 16)
                     {
                         spawnTree(tile, "mytigio.DarkestDepthsAssets_Tree_Brightshroom");
                     }
@@ -1568,36 +1568,59 @@ namespace DarkestDepths.Labyrinth
             if (!base.IsTileOccupiedBy(position))
             {
                 String choice = "";
-                if (random > 98)
+                bool isSpawned = false;
+                
+                if (random >= 98)
+                {
+                    //glowcap
+                    isSpawned = true;
+                    choice = "mytigio.DarkestDepthsAssets_Voidcap";
+                }
+                else if (random >= 97)
+                {
+                    isSpawned = true;
+                    choice = "mytigio.DarkestDepthsAssets_Glowcap";
+                }
+                else if (random >= 96)
+                {
+                    isSpawned = true;
+                    choice = "mytigio.DarkestDepthsAssets_Brightcap";
+                }
+                else if (random >= 95)
                 {
                     //gem node
                     choice = "44";
                 }
-                else if (random > 97)
+                else if (random >= 94)
                 {
                     //iridium ore node.
                     choice = "765";
                 }
-                else if (random > 95)
+                else if (random >= 92)
                 {
                     //gold ore node.
                     choice = "764";
                 }
-                else if (random > 92)
+                else if (random >= 81)
                 {
                     //iron ore node.
                     choice = "290";
                 }
-                else if (random > 88)
+                else if (random >= 87)
                 {
                     //coper ore node.
                     choice = "751";
                 }
-                else if (random > 80)
+                else if (random >= 77)
                 {
                     choice = "670";
                 }
-                else if (random > 65)
+                else if (random >= 72)
+                {
+                    choice = "404";
+                    isSpawned = true;
+                }
+                else if (random >= 65)
                 {
                     List<String> options = new List<String>() {
                         "343",
@@ -1611,6 +1634,7 @@ namespace DarkestDepths.Labyrinth
                 if (!String.IsNullOrEmpty(choice))
                 {
                     StardewValley.Object o = new StardewValley.Object(choice, 1);
+                    o.IsSpawnedObject = isSpawned;
                     this.objects.Add(position, o);
                 }
             }
@@ -1627,17 +1651,23 @@ namespace DarkestDepths.Labyrinth
             Monster monster;
             if (random < 10)
             {
-                monster = new RockGolem(Vector2.Zero);
+                monster = new RockCrab(Vector2.Zero, "Lava Crab");
                 monster.BuffForAdditionalDifficulty(base_difficulty_slider);
             }
-            else if (random < 20)
+            else if (random < 15)
             {
-                monster = new ShadowBrute(Vector2.Zero);
+                monster = new RockCrab(Vector2.Zero, "Iridium Crab");
                 monster.BuffForAdditionalDifficulty(base_difficulty_slider);
+            }
+            else if (random < 25)
+            {
+                monster = new RockGolem(Vector2.Zero);
+                monster.BuffForAdditionalDifficulty(base_difficulty_slider);
+                
             }
             else if (random < 30)
             {
-                monster = new RockGolem(Vector2.Zero);
+                monster = new ShadowBrute(Vector2.Zero);
                 monster.BuffForAdditionalDifficulty(base_difficulty_slider + 1);
             }
             else if (random < 40)
@@ -1648,23 +1678,85 @@ namespace DarkestDepths.Labyrinth
             else if (random < 60)
             {
                 monster = new ShadowBrute(Vector2.Zero);
-                monster.BuffForAdditionalDifficulty(base_difficulty_slider + 1);
+                monster.BuffForAdditionalDifficulty(base_difficulty_slider);
             }
-            else if (random < 80)
+            else if (random < 75)
             {
                 monster = new Shooter(Vector2.Zero);
                 monster.BuffForAdditionalDifficulty(base_difficulty_slider);
             }
-            else if (random < 98)
+            else if (random < 90)
             {
-                monster = new RockGolem(Vector2.Zero);
-                monster.BuffForAdditionalDifficulty(base_difficulty_slider + 2);
+                monster = createEnhancedGolem(base_difficulty_slider, "Shadow Golem");
+            }
+            else if (random < 93)
+            {
+                monster = createFalseMushroomCap(base_difficulty_slider, "False Voidcap", "(O)mytigio.DarkestDepthsAssets_Voidcap");
+            }
+            else if (random < 95)
+            {
+                monster = createFalseMushroomCap(base_difficulty_slider, "False Glowcap", "(O)mytigio.DarkestDepthsAssets_Glowcap");
+            }
+            else if (random < 97)
+            {
+                monster = createFalseMushroomCap(base_difficulty_slider, "False Brightcap", "(O)mytigio.DarkestDepthsAssets_Brightcap");
             }
             else
             {
-                monster = new DwarvishSentry(Vector2.Zero);
+                monster = new Skeleton(Vector2.Zero, true);
                 monster.BuffForAdditionalDifficulty(base_difficulty_slider);
             }
+
+            return monster;
+        }
+
+        private Monster createFalseMushroomCap(int difficulty_slider, string name, string drop)
+        {
+            Monster monster = new RockCrab(Vector2.Zero, "False Magma Cap");
+            monster.Name = name;
+            monster.Sprite = new AnimatedSprite("Characters\\Monsters\\" + monster.Name, 0, 16, 24);
+            monster.DamageToFarmer += 5;
+            monster.ExperienceGained += 5;
+            monster.objectsToDrop.Clear();
+            monster.objectsToDrop.Add(drop);
+
+            monster.BuffForAdditionalDifficulty(difficulty_slider);
+
+            return monster;
+        }
+
+        private Monster createEnhancedGolem(int difficulty_slider, String golemName = "Iridium Golem")
+        {
+            Monster monster = new RockGolem(Vector2.Zero);
+            monster.Name = golemName;
+            monster.Sprite = new AnimatedSprite("Characters\\Monsters\\" + monster.Name, 0, 16, 24);
+            monster.IsWalkingTowardPlayer = false;
+            monster.Slipperiness = 3;
+            monster.HideShadow = true;
+            monster.jitteriness.Value = 0.0;
+            monster.Speed *= 2;
+            monster.Health += 400;
+            monster.MaxHealth += 400;
+            monster.DamageToFarmer += 10;
+            monster.ExperienceGained += 10;
+
+            String itemToAdd = "337";
+
+            if (Game1.random.NextDouble() < 0.03)
+            {
+                monster.objectsToDrop.Add(itemToAdd);
+            }
+
+            if (Game1.random.NextDouble() < 0.03)
+            {
+                monster.objectsToDrop.Add(itemToAdd);
+            }
+
+            monster.BuffForAdditionalDifficulty(difficulty_slider);
+
+            monster.Sprite.currentFrame = 16;
+            monster.Sprite.loop = false;
+            monster.Sprite.UpdateSourceRect();
 
             return monster;
         }
