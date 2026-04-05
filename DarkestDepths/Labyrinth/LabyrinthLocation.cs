@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DarkestDepths.Helpers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Netcode;
 using StardewModdingAPI;
@@ -126,6 +127,8 @@ namespace DarkestDepths.Labyrinth
 
         private readonly NetColor netFogColor = new NetColor();
 
+        private readonly Color lightingColor = new Color(150, 150, 150);
+
         public Color fogColor
         {
             get
@@ -208,15 +211,13 @@ namespace DarkestDepths.Labyrinth
             locationContextId = LabyrinthManager.CONTEXT_NAME;
             Game1.locationContextData.TryGetValue(locationContextId, out contextData);
 
-            base.IsOutdoors = false;
-            base.IsFarm = false;
-            base.IsGreenhouse = false;
-            Color ambientcolor = new Color(70f, 70f, 70f);
-            base.ignoreOutdoorLighting.Value = true;
-            base.indoorLightingColor = ambientcolor;
-            base.indoorLightingNightColor = ambientcolor;
-            base.LightLevel = 0.60f;
-            base._updateAmbientLighting();
+            isOutdoors.Value = false;
+            isFarm.Value = false;
+            isGreenhouse.Value = false;
+            ignoreOutdoorLighting.Value = true;
+            indoorLightingColor = lightingColor;
+            lightLevel.Value = 0.00f;
+            _updateAmbientLighting();
 
             LocationData data = new LocationData();
             data.CustomFields = new();
@@ -225,7 +226,7 @@ namespace DarkestDepths.Labyrinth
             name.Value = "";
             critters = new List<Critter>();
             this.fogColor = new Color(58, 0, 102);
-            //this.fogColor = new Color(141, 73, 70);
+            //this.fogColor = Color.Black;
         }
         /// <summary>
         /// Builds a new labyrinth location with just the name.  Should not typically be used.
@@ -238,17 +239,59 @@ namespace DarkestDepths.Labyrinth
             Level = 0;
             _monitor = monitor;
             int baseSeed = LabyrinthManager.DailySeed;
-
             base.name.Value = "Labyrinth_" + (baseSeed.ToString() ?? "no_seed") + "_" + Level.ToString() + "_0_0";
             monitor.Log("Level set to: " + Level, LogLevel.Trace);
             monitor.Log("Name set to " + Name, LogLevel.Trace);
-            string psudoRandomSeedString = (Game1.Date.TotalDays % 1680).ToString().PadLeft(4, '0') + Level.ToString().PadLeft(2, '0') + "00" + "00";
-            buildMap(psudoRandomSeedString);
+            parentExitPoint.Value = new Point(0, 0);
+            buildMap();
+        }
+
+        /// <summary>
+        /// Builds a new labyrinth location with just the name.  Should not typically be used.
+        /// </summary>
+        /// <param name="name">Name of the location</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("SMAPI.CommonErrors", "AvoidNetField")]
+        public LabyrinthLocation(LabyrinthLevelRequest request, IMonitor monitor) : this()
+        {
+            int baseSeed = LabyrinthManager.DailySeed;
+            base.name.Value = buildLabyrinthName(request.Level, request.X, request.Y, baseSeed);
+            Level = request.Level;
+            _monitor = monitor;
+            monitor.Log("Level set to: " + Level, LogLevel.Trace);
+            monitor.Log("Name set to " + Name, LogLevel.Trace);
+            parentExitPoint.Value = new Point(request.X, request.Y);
+            buildMap();
+        }
+
+        protected override void _updateAmbientLighting()
+        {   
+            Game1.ambientLight = this.lightingColor;
+        }
+
+        protected override void initNetFields()
+        {
+            base.initNetFields();
+            this.NetFields.SetOwner(this);
+            this.NetFields.AddField(level);
+            this.NetFields.AddField(levelSeed);
+            this.NetFields.AddField(height);
+            this.NetFields.AddField(width);
+            this.NetFields.AddField(parentLevel);
+            this.NetFields.AddField(parentExitPoint);
+            this.NetFields.AddField(exits);
+            this.NetFields.AddField(entrancePosition);
+            this.NetFields.AddField(netFogColor);
+
         }
 
         public static String buildLabyrinthName(LabyrinthLocation parentLocation, LabyrinthExit parentExit, int baseSeed)
         {
-            return "Labyrinth_" + (baseSeed.ToString() ?? "no_seed") + "_" + (parentLocation.Level + 1).ToString() + "_" + parentExit.Position.X.ToString() + "_" + parentExit.Position.Y.ToString();
+            return buildLabyrinthName(parentLocation.Level, parentExit.Position.X, parentExit.Position.Y, baseSeed);
+        }
+
+        public static String buildLabyrinthName(int Level, int X, int Y, int baseSeed)
+        {
+            return "Labyrinth_" + (baseSeed.ToString() ?? "no_seed") + "_" + (Level).ToString() + "_" + X.ToString() + "_" + Y.ToString();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("SMAPI.CommonErrors", "AvoidNetField")]
@@ -257,9 +300,6 @@ namespace DarkestDepths.Labyrinth
             _monitor = monitor;
             Level = parentLocation.Level + 1;
             monitor.Log("Level set to: " + Level, LogLevel.Trace);
-            IsOutdoors = false;
-            IsFarm = false;
-            IsGreenhouse = false;
             parentLevel.Value = parentLocation.Name;
             parentExitPoint.Value = parentExit.Position;
 
@@ -270,21 +310,27 @@ namespace DarkestDepths.Labyrinth
             int baseSeed = LabyrinthManager.DailySeed;
 
             name.Value = buildLabyrinthName(parentLocation, parentExit, baseSeed);
+            buildMap();
+        }
 
-
+        public void buildMap()
+        {   
             //create a number representation from the level and position of the exit on the parents.
             //we want the individual seed used to build the level itself to be predictable given a set game and daily seed so that different players visiting the labyrinth on
-            //the same day will visit the same places, and a player making more then 1 runt hrough the labyrinth will see the same levels on the same day.
+            //the same day will visit the same places, and a player making more then 1 run hrough the labyrinth will see the same levels on the same day.
             //each day the labyrinth will regenerate and shift.
 
             //monsters will not use this same seed, so that they are less predictible on subsequent visits (not sure if they will respawn on each visit or after a certain time).
-            string psudoRandomSeedString = (Game1.Date.TotalDays % 1680).ToString().PadLeft(4, '0') + Level.ToString().PadLeft(2, '0') + parentExit.Position.X.ToString().PadLeft(2, '0') + parentExit.Position.Y.ToString().PadLeft(2, '0');
+            string psudoRandomSeedString = (Game1.Date.TotalDays % 1680).ToString().PadLeft(4, '0') + Level.ToString().PadLeft(2, '0') + parentExitPoint.X.ToString().PadLeft(2, '0') + parentExitPoint.Y.ToString().PadLeft(2, '0');
             buildMap(psudoRandomSeedString);
         }
 
         private void InitializeMap()
         {
             Map map = new Map(Name);
+            
+            OnMapLoad(map);
+
             string caveImageSource = Path.Combine("Maps", "Mines", "mine_dark_dangerous");
             string volcanoImageSource = Path.Combine("Maps", "Mines", "volcano_dungeon");
             Game1.temporaryContent.Load<Texture2D>(caveImageSource);
@@ -310,8 +356,35 @@ namespace DarkestDepths.Labyrinth
             map.AddLayer(new Layer("AlwaysFront", map, new xTile.Dimensions.Size(adjustedWidth, adjustedHeight), new xTile.Dimensions.Size(64, 64)));
 
             this.map = map;
+            this.map.Id = this.Name;
+            _monitor.Log("Set map id to : " + this.map.Id,LogLevel.Info);
 
             SortLayers();
+            loadLights();
+        }
+
+        private void buildEmptyMap()
+        {
+            //make the map as big as it can be for now.
+            _monitor.Log("Create empty map", LogLevel.Debug);
+            int finalSize = getMapSize(LabyrinthManager.MAXIMUM_MAP_SIZE);
+            Width = finalSize;
+            Height = finalSize;
+
+            InitializeMap();
+        }
+
+        private int getMapSize(int size)
+        {
+            var mapSize = size * LabyrinthManager.TILE_SPACING;
+
+            //now ensure the size leaves room for walls on the east and south sides.
+            int modded = mapSize % LabyrinthManager.TILE_SPACING;
+            int doubleSpaceAtStart = LabyrinthManager.TILE_SPACING / 2 * 2;
+            int difference = doubleSpaceAtStart - modded;
+            int finalSize = mapSize + difference;
+
+            return finalSize;
         }
 
         private void buildMap(string psudoRandomSeedString)
@@ -320,20 +393,14 @@ namespace DarkestDepths.Labyrinth
             if (int.TryParse(psudoRandomSeedString, out psudoRandomSeed))
             {
                 //we now have a psudo random level seed, lets store it!
-                levelSeed.Value = psudoRandomSeed;
+                levelSeed.Value = LabyrinthManager.DailySeed + psudoRandomSeed;
                 _monitor.Log("levelSeed set to " + levelSeed.Value, LogLevel.Trace);
                 Random levelRng = new Random(psudoRandomSeed);
                 seeded_random = levelRng;
                 //our maze levels are square dimensions so we just generate 1 and use it for both x and y
                 size = seeded_random.Next(LabyrinthManager.MINIMUM_MAP_SIZE, LabyrinthManager.MAXIMUM_MAP_SIZE);
 
-                var mapSize = size * LabyrinthManager.TILE_SPACING;
-
-                //now ensure the size leaves room for walls on the east and south sides.
-                int modded = mapSize % LabyrinthManager.TILE_SPACING;
-                int doubleSpaceAtStart = LabyrinthManager.TILE_SPACING / 2 * 2;
-                int difference = doubleSpaceAtStart - modded;
-                int finalSize = mapSize + difference;
+                int finalSize = getMapSize(size);
 
                 int spacing_adjustment = 0;
                 if (LabyrinthManager.TILE_SPACING % 2 == 0)
@@ -364,11 +431,13 @@ namespace DarkestDepths.Labyrinth
             TileSheet volcano_sheet = map.GetTileSheet(LabyrinthManager.VOLCANO_TILESHEET);
             var tileMap = createFloorPlan(unvisitedPoints, dark_sheet);
             var tileGroupings = placeMapTiles(tileMap, dark_sheet);
-            spawnFeatures(tileMap);
             placeEntrance(tileMap, tileGroupings, volcano_sheet, dark_sheet);
             placeExits(tileMap, tileGroupings, volcano_sheet, dark_sheet);
             placeTreasureSpots(tileMap, tileGroupings, volcano_sheet, dark_sheet);
             _monitor.Log("Endcap spots remaining with nothing in them: " + tileGroupings["emptyEndcaps"].Count());
+
+            //removed for debugging the map in multiplayer
+            //spawnFeatures(tileMap);
         }
 
         private void placeEntrance(LabyrinthTile[,] tileMap, Dictionary<String, List<LabyrinthTile>> tileGroupings, TileSheet volcano_sheet, TileSheet cave_sheet)
@@ -1425,6 +1494,7 @@ namespace DarkestDepths.Labyrinth
         {
             base.UpdateWhenCurrentLocation(time);
             bool num = Game1.currentLocation == this;
+
             /*
             if (num)
             {
@@ -1442,6 +1512,7 @@ namespace DarkestDepths.Labyrinth
             base.drawAboveAlwaysFrontLayer(b);
             b.End();
             b.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            
             /*
             Vector2 v = default(Vector2);
             for (float x = -256 + (int)(this.fogPos.X % 256f); x < (float)Game1.graphics.GraphicsDevice.Viewport.Width; x += 256f)
@@ -1525,11 +1596,10 @@ namespace DarkestDepths.Labyrinth
                         try
                         {
                             string[] colors = colorString.Split(' ');
-                            int r = this.indoorLightingColor.R - byte.Parse(colors[0]);
-                            int g = this.indoorLightingColor.G - byte.Parse(colors[1]);
-                            int b = this.indoorLightingColor.B - byte.Parse(colors[2]);
-                            int a = this.indoorLightingColor.A - byte.Parse(colors[3]);
-
+                            int r = 255 - byte.Parse(colors[0]);
+                            int g = 255 - byte.Parse(colors[1]);
+                            int b = 255 -byte.Parse(colors[2]);
+                            
                             color = new Color(r, g, b, 255);
                         }
                         catch
@@ -1540,7 +1610,7 @@ namespace DarkestDepths.Labyrinth
                         float x = (position.X * 64 + 32);
                         float y = (position.Y * 64 + 32);
 
-                        this.lightSources.Add(position, new LightSource(LightSource.sconceLight, new Vector2(x, y), 0.2f * (treeSize * treeSize), color));
+                        this.lightSources.Add(position, new LightSource("mytigio.DarkestDepths.TreeLight." + this.name + "_" + x + "_" + y, LightSource.sconceLight, new Vector2(x, y), 0.2f * (treeSize * 3), color));
                     }
                 }
             }

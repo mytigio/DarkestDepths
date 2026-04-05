@@ -27,7 +27,10 @@
   "Changes": [
     {
       "Action": "Include",
-      "FromFile": "assets/mushroomtrees.json"
+      "FromFile": "assets/mushroomtrees.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
     },
     {
       "Action": "Include",
@@ -35,31 +38,63 @@
     },
     {
       "Action": "Include",
-      "FromFile": "assets/items.json"
+      "FromFile": "assets/items.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
     },
     {
       "Action": "Include",
-      "FromFile": "assets/Jakan/Jakan.json"
+      "FromFile": "assets/Jakan/Jakan.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
     },
     {
       "Action": "Include",
-      "FromFile": "assets/Niko/Niko.json"
+      "FromFile": "assets/Niko/Niko.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
     },
     {
       "Action": "Include",
-      "FromFile": "assets/shops.json"
+      "FromFile": "assets/shops.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
     },
     {
       "Action": "Include",
-      "FromFile": "assets/events.json"
+      "FromFile": "assets/events.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
     },
     {
       "Action": "Include",
-      "FromFile": "assets/monsters.json"
+      "FromFile": "assets/monsters.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
     },
     {
       "Action": "Include",
-      "FromFile": "assets/mushroom_box_updates.json"
+      "FromFile": "assets/mushroom_box_updates.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
+    },
+    {
+      "Action": "Include",
+      "FromFile": "assets/minemapedits.json",
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
+    },
+    {
+      "Action": "Include",
+      "FromFile": "assets/letters.json"
     }
   ]
 }

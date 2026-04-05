@@ -18,6 +18,7 @@ using System.Reflection.Emit;
 using System.Threading;
 using StardewValley.GameData.WildTrees;
 using StardewValley.TerrainFeatures;
+using xTile.Dimensions;
 
 namespace DarkestDepths.Labyrinth
 {
@@ -116,6 +117,12 @@ namespace DarkestDepths.Labyrinth
             return me;
         }
 
+        public static LabyrinthManager buildOnMultiplayerPeerLoad(int gameSeed, int dailySeed)
+        {
+            me = new LabyrinthManager(gameSeed, dailySeed);
+            return me;
+        }
+
         static public LocationContextData buildContext(string id_base)
         {
             if (me == null)
@@ -162,18 +169,17 @@ namespace DarkestDepths.Labyrinth
             {
                 me = new LabyrinthManager();
             }
-            //mod this thing on max value.
             return generateDailySeed();
         }
 
         private static int generateDailySeed()
         {
             long input = (gameSeed.Value) + (dailySeed.Value);
-            int finalInput = (int)(input % int.MaxValue);
+            int finalInput = (int)(input % (int.MaxValue / 2));
             return new Random(finalInput).Next();
         }
-
-        static Dictionary<String, LabyrinthLocation> current_labyrinth_levels = new();
+        
+        public static NetRootDictionary<String, LabyrinthLocation> current_labyrinth_levels = new();
 
         public static void RegisterLabyrinthEvents()
         {
@@ -276,27 +282,56 @@ namespace DarkestDepths.Labyrinth
 
         public static void InitializeBaseLevel()
         {
-            LabyrinthLocation initial_level;
-            if (current_labyrinth_levels.ContainsKey("base"))
+            if (Game1.IsMasterGame)
             {
-                MyMonitor.Log("Warped to base camp. First maze level already exists.");
-                initial_level = current_labyrinth_levels["base"];
-            }
-            else
+                MyMonitor.Log("Create Base Level");
+                LabyrinthLocation initial_level;
+                if (current_labyrinth_levels.ContainsKey("base"))
+                {
+                    MyMonitor.Log("Warped to base camp. First maze level already exists.");
+                    initial_level = current_labyrinth_levels["base"];
+                }
+                else
+                {
+                    MyMonitor.Log("Warped to base camp. Build first maze level");
+                    initial_level = new LabyrinthLocation("base", MyMonitor);
+                    Game1.locations.Add(initial_level);
+                    current_labyrinth_levels["base"] = initial_level;
+
+                    LabyrinthLevelRequest request = new LabyrinthLevelRequest();
+                    request.Level = 0;
+                    request.X = 0;
+                    request.Y = 0;
+
+                    if (Game1.IsMultiplayer)
+                    {
+                        MyMonitor.Log("Initial Labyrinth Level Built. Send to Peers if in multiplayer. " + DataHelper.UniqueID);
+                        LabyrinthLevelRequest newLevelRequest = new LabyrinthLevelRequest();
+                        newLevelRequest.X = 0;
+                        newLevelRequest.Y = 0;
+                        newLevelRequest.Level = 0;
+                        MyHelper.Multiplayer.SendMessage(newLevelRequest, MessageType.LabyrinthLevelCreated, modIDs: new[] { DataHelper.UniqueID });
+                        //broadcast to other peers.
+                    }
+
+                    //initial_level.buildMap();
+                }
+            } else
             {
-                MyMonitor.Log("Warped to base camp. Build first maze level");
-                initial_level = new LabyrinthLocation("base", MyMonitor);
-                Game1.locations.Add(initial_level);
-                current_labyrinth_levels["base"] = initial_level;
+                MyMonitor.Log("Request host to initialize labyrinth for Mod " + DataHelper.UniqueID);
+                MyHelper.Multiplayer.SendMessage("", MessageType.RequestInitialLabryinthLevel, modIDs: new[] { DataHelper.UniqueID });
             }
+            
         }
+
 
         public static void OnWarped(object sender, WarpedEventArgs e)
         {
-            if (Game1.IsMasterGame && !LabyrinthManager.IsDayResetting)
+            if (!LabyrinthManager.IsDayResetting)
             {
                 if (e.NewLocation.Name == LabyrinthManager.BASE_CAMP_NAME)
                 {
+                    MyMonitor.Log("Initialize Labyrinth", LogLevel.Debug);
                     LabyrinthManager.InitializeBaseLevel();
                 }
                 if (e.NewLocation is LabyrinthLocation)
@@ -308,13 +343,44 @@ namespace DarkestDepths.Labyrinth
 
                     foreach (LabyrinthExit exit in newLevel.exits)
                     {
-                        String newLevelName = LabyrinthLocation.buildLabyrinthName(newLevel, exit, DailySeed);
-                        if (!LabyrinthManager.current_labyrinth_levels.ContainsKey(newLevelName))
+                        
+                        if (Game1.IsMasterGame)
                         {
-                            LabyrinthLocation location = new LabyrinthLocation(newLevel, exit, MyMonitor);
-                            Game1.locations.Add(location);
-                            LabyrinthManager.current_labyrinth_levels.Add(location.Name, location);
+                            String newLevelName = LabyrinthLocation.buildLabyrinthName(newLevel, exit, DailySeed);
+                            if (!LabyrinthManager.current_labyrinth_levels.ContainsKey(newLevelName))
+                            {
+                                LabyrinthLocation location = new LabyrinthLocation(newLevel, exit, MyMonitor);
+                                Game1.locations.Add(location);
+                                LabyrinthManager.current_labyrinth_levels.Add(location.Name, location);
+
+                                if (Game1.IsMultiplayer)
+                                {
+                                    MyMonitor.Log("Broadcast new level creation: " + location.Name);
+                                    //Let the non-host peers know a new level has been created.
+                                    LabyrinthLevelRequest newLevelRequest = new LabyrinthLevelRequest();
+                                    newLevelRequest.X = exit.Position.X;
+                                    newLevelRequest.Y = exit.Position.Y;
+                                    newLevelRequest.Level = newLevel.Level + 1;
+                                    MyHelper.Multiplayer.SendMessage(newLevelRequest, MessageType.LabyrinthLevelCreated, modIDs: new[] { DataHelper.UniqueID });
+                                }
+                                
+
+                                //broadcast to other peers.
+                                //location.buildMap();
+                            }
+                        } else
+                        {
+                            //non-host player requests the host to build a new level.
+                            LabyrinthLevelRequest newLevelRequest = new LabyrinthLevelRequest();
+                            newLevelRequest.X = exit.Position.X;
+                            newLevelRequest.Y = exit.Position.Y;
+                            newLevelRequest.Level = newLevel.Level + 1;
+
+                            MyMonitor.Log("Request new level creation: " + newLevelRequest.Level + " ("+newLevelRequest.X+ ","+newLevelRequest.Y+")");
+
+                            MyHelper.Multiplayer.SendMessage(newLevelRequest, MessageType.RequestLabyrinthLevel, modIDs: new[] { DataHelper.UniqueID });
                         }
+                        
                     }
                 }
             }
@@ -340,7 +406,7 @@ namespace DarkestDepths.Labyrinth
             LabyrinthManager.regenerateDailySeed();
             foreach (var farmer in Game1.getAllFarmers())
             {
-                if (farmer.currentLocation.Name == BASE_CAMP_NAME)
+                if (farmer.currentLocation?.Name == BASE_CAMP_NAME)
                 {
                     LabyrinthManager.InitializeBaseLevel();
                 }
@@ -365,7 +431,7 @@ namespace DarkestDepths.Labyrinth
                             {
                                 MyMonitor.Log($"Remove the glow color at tile: [{removed.Key.X.ToString()},{removed.Key.Y.ToString()}]");
                                 var lightSourceToRemove = labyrinthLevel.lightSources[removed.Key];
-                                Game1.currentLightSources.Remove(lightSourceToRemove);
+                                Game1.currentLightSources.Remove(lightSourceToRemove.Id);
                                 labyrinthLevel.lightSources.Remove(removed.Key);
                             }
                             

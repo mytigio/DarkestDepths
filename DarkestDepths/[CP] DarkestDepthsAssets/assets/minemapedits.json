@@ -1,0 +1,67 @@
+{
+  "Changes": [
+    {
+      "LogName": "Add BaseCamp Entrance on level 120",
+      "Action": "EditMap",
+      "Target": "Maps/Mines/120",
+      "FromFile": "assets/BaseCamp/120.tmx",
+      "FromArea": {
+        "X": 12,
+        "Y": 1,
+        "Width": 3,
+        "Height": 5
+      },
+      "ToArea": {
+        "X": 12,
+        "Y": 1,
+        "Width": 3,
+        "Height": 5
+      },
+      "MapTiles": [
+        {
+          "Position": {
+            "X": 13,
+            "Y": 5
+          },
+          "Layer": "Buildings",
+          "SetProperties": {
+            "Action": "Warp 26 34 {{ModId}}_Location.BaseCamp"
+          }
+        },
+        {
+          "Position": {
+            "X": 14,
+            "Y": 5
+          },
+          "Layer": "Buildings",
+          "SetProperties": {
+            "Action": "Warp 26 34 {{ModId}}_Location.BaseCamp"
+          }
+        }
+      ],
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
+    },
+    {
+      "LogName": "Add BaseCamp Entrance on level 120",
+      "Action": "EditMap",
+      "Target": "Mods/mytigio/DarkestDepthsAssets/Maps/BaseCamp",
+      "MapTiles": [
+        {
+          "Position": {
+            "X": 26,
+            "Y": 33
+          },
+          "Layer": "Buildings",
+          "SetProperties": {
+            "Action": "Warp 13 6 UndergroundMine120"
+          }
+        }
+      ],
+      "When": {
+        "HasFlag": "{{ModId}}_BaseCamp_Entrance_Opened"
+      }
+    }
+  ]
+}

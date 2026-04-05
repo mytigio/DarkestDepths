@@ -7,6 +7,12 @@
       "FromFile": "assets/BaseCamp/BaseCamp.tmx"
     },
     {
+      "LogName": "Load Empty Labyrinth Map",
+      "Action": "Load",
+      "Target": "Mods/mytigio/DarkestDepthsAssets/Maps/Empty",
+      "FromFile": "assets/BaseCamp/Empty.tmx"
+    },
+    {
       "LogName": "Load Dwarven Base Camp Location",
       "Action": "EditData",
       "Target": "Data/Locations",
@@ -122,6 +128,49 @@
             "AllowMagicMushroomTreeGrowth": "true"
           }
         }
+      }
+    },
+    {
+      "LogName": "Make Basecamp into buildable farm",
+      "Action": "EditMap",
+      "Target": "Mods/mytigio/DarkestDepthsAssets/Maps/BaseCamp",
+      "MapProperties": {
+        "CanBuildHere": "T"
+      },
+      "When": {
+        "HasFlag": "{{ModId}}_MailID_MakeBaseCampBuildable"
+      }
+    },
+    {
+      "LogName": "Make Player Tent Sleepable",
+      "Action": "EditMap",
+      "Target": "mytigio.DarkestDepthsAssets_Location.PlayerTent",
+      "MapTiles": [
+        {
+          "Position": {
+            "X": 4,
+            "Y": 3
+          },
+          "Layer": "Back",
+          "SetProperties": {
+            "Bed": "T",
+            "TouchAction": "Sleep"
+          }
+        },
+        {
+          "Position": {
+            "X": 4,
+            "Y": 4
+          },
+          "Layer": "Back",
+          "SetProperties": {
+            "Bed": "T",
+            "TouchAction": "Sleep"
+          }
+        }
+      ],
+      "When": {
+        "HasFlag": "{{ModId}}_MailID_SpokeToDwarves"
       }
     },
     {

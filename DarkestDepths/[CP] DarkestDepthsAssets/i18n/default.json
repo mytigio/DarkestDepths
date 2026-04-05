@@ -24,6 +24,8 @@
     "Objects.Brightshroom.Gills.Description": "Slices of brightshroom, harvested from the fleshy gills below the cap. Have a bright earthy flavor.",
     "WildTrees.Shroomtrees.LabyrinthDeniedMessage": "If you plant here, the shifting labyrinth will kill the tree before it can grow.",
     "WildTrees.Shroomtrees.BasicDeniedMessage": "There is insufficient magic in this place for the shroomtree to thrive.",
+    "Mail.Marlon.MinesEntrance.LetterText": "@,^Last night while exploring the mines I stumbled upon something strange.^It would seem in the deepest depths of the mine, a recent shift in the earth has exposed a new pathway even deeper.^I have not explored these depths, but thought perhaps you may want to.^Be careful @, who knows what could be down there.^- Marlon",
+    "Mail.Marlon.MinesEntrance.LetterName": "A pathway into darkness",
     "Farmer.Dialogue.Event.FirstVisit.1": "Yes, I'm a human. Who are you?",
     "Farmer.Dialogue.Event.FirstVisit.Answer.1.1": "I can understand you...",
     "Farmer.Dialogue.Event.FirstVisit.Answer.1.2": "Wow, more dwarves! I can't believe it!",

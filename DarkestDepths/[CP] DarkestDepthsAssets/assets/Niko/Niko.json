@@ -4,13 +4,13 @@
       "LogName": "Load Niko Sprite",
       "Action": "Load",
       "Target": "Characters/{{ModId}}_Niko",
-      "FromFile": "assets/Niko/mytigio.DwarkestDepthsAssets_Niko_Sprite.png"
+      "FromFile": "assets/Niko/mytigio.DarkestDepthsAssets_Niko_Sprite.png"
     },
     {
       "LogName": "Load Niko Portrait",
       "Action": "Load",
       "Target": "Portraits/{{ModId}}_Niko",
-      "FromFile": "assets/Niko/mytigio.DwarkestDepthsAssets_Niko_Portrait.png"
+      "FromFile": "assets/Niko/mytigio.DarkestDepthsAssets_Niko_Portrait.png"
     },
     {
       "Action": "Include",

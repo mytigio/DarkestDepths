@@ -1,0 +1,27 @@
+{
+    "Changes": [
+        {
+            "LogName": "Add Opening Letter Trigger Event",
+            "Action": "EditData",
+            "Target": "Data/TriggerActions",
+            "Entries": {
+                "{{ModId}}_Marlons_Letter": {
+                    "Id": "{{ModId}}_Marlons_Letter",
+                    "Trigger": "DayEnding",
+                    "Condition": "YEAR 2, PLAYER_COMBAT_LEVEL Any 7, MINE_LOWEST_LEVEL_REACHED 120",
+                    "Actions": [
+                        "AddMail All {{ModId}}_BaseCamp_Entrance_Opened"
+                    ]
+                }
+            }
+        },
+        {
+            "LogName": "Add Opening Letter From Marlon",
+            "Action": "EditData",
+            "Target": "Data/Mail",
+            "Entries": {
+                "{{ModId}}_BaseCamp_Entrance_Opened": "{{i18n:Mail.Marlon.MinesEntrance.LetterText}}[#]{{i18n:Mail.Marlon.MinesEntrance.LetterName}}"
+            }
+        }
+    ]
+}

@@ -4,13 +4,13 @@
       "LogName": "Load Jakan Sprite",
       "Action": "Load",
       "Target": "Characters/{{ModId}}_Jakan",
-      "FromFile": "assets/Jakan/mytigio.DwarkestDepthsAssets_Jakan_Sprite.png"
+      "FromFile": "assets/Jakan/mytigio.DarkestDepthsAssets_Jakan_Sprite.png"
     },
     {
       "LogName": "Load Jakan Portrait",
       "Action": "Load",
       "Target": "Portraits/{{ModId}}_Jakan",
-      "FromFile": "assets/Jakan/mytigio.DwarkestDepthsAssets_Jakan_Portrait.png"
+      "FromFile": "assets/Jakan/mytigio.DarkestDepthsAssets_Jakan_Portrait.png"
     },
     {
       "Action": "Include",

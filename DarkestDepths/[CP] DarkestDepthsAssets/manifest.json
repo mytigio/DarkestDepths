@@ -6,6 +6,12 @@
   "UniqueID": "mytigio.DarkestDepthsAssets",
   "MinimumApiVersion": "3.0.0",
   "UpdateKeys": [],
+  "Dependencies": [
+		{
+			"UniqueID": "mytigio.dwarven_expansion",
+			"IsRequired": false
+		}
+	],
   "ContentPackFor": {
     "UniqueID": "Pathoschild.ContentPatcher"
   }

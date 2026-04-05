@@ -139,7 +139,7 @@
             }
           ],
           "CustomFields": {
-            "{{ModId}}_Glow_Color": "160 84 208 255"
+            "{{ModId}}_Glow_Color": "30 5 45 255"
           }
         },
         "{{ModId}}_Tree_Glowshroom": {
@@ -264,9 +264,6 @@
           ],
           "SeedItemId": "(O){{ModId}}_Spore_Brightshroom",
           "SeedPlantable": true,
-          "GrowthChance": 0,
-          "FertilizedGrowthChance": 0,
-          "SeedSpreadChance": 0,
           "DropWoodOnChop": false,
           "DropHardwoodOnLumberChop": false,
           "IsLeafy": false,

@@ -14,5 +14,7 @@ namespace DarkestDepths.Helpers
         public static IModHelper MyHelper { get; set; }
         public static IMonitor MyMonitor { get; set; }
 
+        public static string UniqueID { get; set; }
+
     }
 }
