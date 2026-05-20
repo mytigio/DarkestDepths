@@ -135,7 +135,7 @@
               "Id": "Everywhere_Else",
               "Result": "Deny",
               "PlantedIn": "Ground",
-              "DeniedMessage": "{{i18n:WildTrees.Shroomtrees.DeniedMessage}}"
+              "DeniedMessage": "{{i18n:WildTrees.Shroomtrees.BasicDeniedMessage}}"
             }
           ],
           "CustomFields": {
@@ -249,7 +249,7 @@
               "Id": "Everywhere_Else",
               "Result": "Deny",
               "PlantedIn": "Ground",
-              "DeniedMessage": "{{i18n:WildTrees.Shroomtrees.DeniedMessage}}"
+              "DeniedMessage": "{{i18n:WildTrees.Shroomtrees.BasicDeniedMessage}}"
             }
           ],
           "CustomFields": {
@@ -368,7 +368,7 @@
               "Id": "Everywhere_Else",
               "Result": "Deny",
               "PlantedIn": "Ground",
-              "DeniedMessage": "{{i18n:WildTrees.Shroomtrees.DeniedMessage}}"
+              "DeniedMessage": "{{i18n:WildTrees.Shroomtrees.BasicDeniedMessage}}"
             }
           ],
           "CustomFields": {
