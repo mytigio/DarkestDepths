@@ -479,11 +479,11 @@
           "PerItemCondition": null
         },
         "{{ModId}}_AlchemyBench": {
-          "ID": "{{ModId}}_AlchemyBench",
-          "ItemId": "(BC){{ModId}}_AlchemyBench",
+          "ID": "{{DE_ModId}}_AlchemyBench",
+          "ItemId": "(BC){{DE_ModId}}_AlchemyBench",
           "Condition": "PLAYER_MINING_LEVEL Current 7",
           "TradeItemId": "74",
-          "TradeItemAmount": "2",
+          "TradeItemAmount": "1",
           "Price": "0",
           "AvailableStock": 1,
           "AvailableStockLimit": "Player"

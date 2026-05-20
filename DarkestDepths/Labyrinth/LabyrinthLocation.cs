@@ -437,7 +437,7 @@ namespace DarkestDepths.Labyrinth
             _monitor.Log("Endcap spots remaining with nothing in them: " + tileGroupings["emptyEndcaps"].Count());
 
             //removed for debugging the map in multiplayer
-            //spawnFeatures(tileMap);
+            spawnFeatures(tileMap);
         }
 
         private void placeEntrance(LabyrinthTile[,] tileMap, Dictionary<String, List<LabyrinthTile>> tileGroupings, TileSheet volcano_sheet, TileSheet cave_sheet)
@@ -1616,7 +1616,7 @@ namespace DarkestDepths.Labyrinth
             }
         }
 
-        private void spawnTreasture(LabyrinthTile tile)
+        private void spawnTreasure(LabyrinthTile tile)
         {
 
         }
@@ -1676,21 +1676,21 @@ namespace DarkestDepths.Labyrinth
                     //iron ore node.
                     choice = "290";
                 }
-                else if (random >= 87)
+                else if (random >= 71)
                 {
                     //coper ore node.
                     choice = "751";
                 }
-                else if (random >= 77)
+                else if (random >= 61)
                 {
                     choice = "670";
                 }
-                else if (random >= 72)
+                else if (random >= 56)
                 {
                     choice = "404";
                     isSpawned = true;
                 }
-                else if (random >= 65)
+                else if (random >= 45)
                 {
                     List<String> options = new List<String>() {
                         "343",
